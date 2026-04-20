@@ -94,7 +94,9 @@ def build_app() -> gr.Blocks:
     return demo
 
 
+# Module-level demo for HF Spaces
+demo = build_app()
+
 if __name__ == "__main__":
     port = int(os.environ.get("GRADIO_SERVER_PORT", "7860"))
-    app = build_app()
-    app.launch(server_port=port)
+    demo.launch(server_port=port)
