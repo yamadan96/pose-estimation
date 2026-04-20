@@ -2,16 +2,7 @@
 
 import logging
 
-import numpy as np
 import torch
-
-# Monkey-patch: transformers ViTPose image processor references `inv` without
-# importing it. Inject numpy's inv so scipy_warp_affine doesn't NameError.
-import transformers.models.vitpose.image_processing_vitpose as _vp_ip
-
-if not hasattr(_vp_ip, "inv"):
-    _vp_ip.inv = np.linalg.inv  # type: ignore[attr-defined]
-
 from transformers import AutoProcessor, VitPoseForPoseEstimation
 from transformers.models.vitpose.image_processing_vitpose import VitPoseImageProcessor
 
